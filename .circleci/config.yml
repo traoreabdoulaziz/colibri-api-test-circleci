@@ -37,5 +37,5 @@ jobs:
 workflows:
   build_test_deploy:
     jobs:
-      - build_push_image_cloud_run_mangaged:
+      - build_push_image_cloud_run_mangaged
         
