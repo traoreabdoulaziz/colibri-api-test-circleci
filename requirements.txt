@@ -34,3 +34,4 @@ geocoder
 gunicorn
 uvloop
 httptools
+qrcode
