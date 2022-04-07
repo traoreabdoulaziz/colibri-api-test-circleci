@@ -32,7 +32,7 @@ jobs:
       - cloudrun/deploy:
           platform: "managed"
           image: "us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME"
-          service-name: $SERVICE_NAME
+          service-name: "$SERVICE_NAME"
           region: $GOOGLE_COMPUTE_ZONE
           unauthenticated: true
 workflows:
