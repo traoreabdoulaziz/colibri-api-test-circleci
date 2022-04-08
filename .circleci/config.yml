@@ -16,7 +16,6 @@ jobs:
       - run:
           name: Build app binary and Docker image
           command: |
-            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
             echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
             docker build -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME .
       - gcp-gcr/gcr-auth:
