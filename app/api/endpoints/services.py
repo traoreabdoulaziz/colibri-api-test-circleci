@@ -52,6 +52,7 @@ async def create_activity_file(id: str,type:str, file: UploadFile = File(...), c
        
 
 
+
 #Endpoint to download taxpayer image from S3
 @router.get("/download_taxpayer_info/", tags=["S3 api"])
 async def get_taxpayer_file(id: str,type:str,current_user: User_Pydantic = Depends(get_current_user)):
