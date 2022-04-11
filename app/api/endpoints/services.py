@@ -69,8 +69,6 @@ async def get_taxpayer_file(id: str,type:str,current_user: User_Pydantic = Depen
     return {"message": "success","code": "1","image_url":presigned_url}
 
 
-
-
 #Endpoint to download taxpayer image from S3
 @router.get("/download_activity_info/", tags=["S3 api"])
 async def get_activity_image(id: str,type:str,current_user: User_Pydantic = Depends(get_current_user)):
