@@ -41,3 +41,7 @@ workflows:
   build_deploy_gcp:
     jobs:
       - build_deploy
+        filters:            
+            branches:
+              only:
+                - main
