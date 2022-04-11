@@ -19,9 +19,6 @@ DT_FMT_FN = '%Y%m%d%H%M%S'
 OUTPUT_BUCKET = 'data354-public-assets'
 
 
-
-
-
 #Endpoint to store image taxpayer on S3
 @router.post("/upload_taxpayer_info/", tags=["S3 api"])
 async def create_taxpayer_file(id: str,type:str, file: UploadFile = File(...), current_user: User_Pydantic = Depends(get_current_user)):
