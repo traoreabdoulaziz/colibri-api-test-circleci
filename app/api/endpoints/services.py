@@ -50,8 +50,6 @@ async def create_activity_file(id: str,type:str, file: UploadFile = File(...), c
     save_file_in_S3(OUTPUT_BUCKET, image_url,file)
     return {"message":"File upload to S3","code":"1"}
        
-       
-
 #Endpoint to download taxpayer image from S3
 @router.get("/download_taxpayer_info/", tags=["S3 api"])
 async def get_taxpayer_file(id: str,type:str,current_user: User_Pydantic = Depends(get_current_user)):
