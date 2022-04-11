@@ -18,7 +18,7 @@ from .api.api import router as api_router
 app = FastAPI(title='Colibri api')
 @app.get("/",  tags=["Endpoint Test"])
 def main_endpoint_test():
-    return {"message": "Welcome to API COLIBRI"}
+    return {"message": "Welcome to API COLIBRI AZIZ"}
 
 
 @app.post('/token', tags=["Authentication"])
