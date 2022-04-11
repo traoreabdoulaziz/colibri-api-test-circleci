@@ -32,7 +32,7 @@ jobs:
               docker push us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME
         - cloudrun/deploy:
             image: us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME:$TAG
-            platform: managed
+            platform: "managed"
             region: us-east1
             service-name: $SERVICE_NAME
             unauthenticated: true
