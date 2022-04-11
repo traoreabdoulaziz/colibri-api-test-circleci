@@ -7,6 +7,8 @@ jobs:
     build_deploy:
       docker:
         - image: circleci/python:3.8
+      environment:
+        IMAGE_NAME: colibri-image
       steps:
         - checkout
         - setup_remote_docker:
@@ -15,12 +17,9 @@ jobs:
         - run:
             name: Build app binary and Docker image
             command: |
-              echo 'export PATH=$PATH:/.local/bin' >> $BASH_ENV
               echo ${GCP_PROJECT_KEY} | base64 -d -i > $HOME/gcloud-service-key.json
               echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
-              echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
-              echo 'export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV && source $BASH_ENV
-              docker build -t us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME -t us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME:$TAG .
+              docker build -t us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME -t us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME .
         - gcp-gcr/gcr-auth:
             gcloud-service-key: GOOGLE_CLOUD_KEYS
             google-project-id: GOOGLE_PROJECT_ID
@@ -31,9 +30,9 @@ jobs:
               gcloud auth configure-docker us-east1-docker.pkg.dev
               docker push us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME
         - cloudrun/deploy:
-            image: us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME:$TAG
+            image: us-east1-docker.pkg.dev/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME
             platform: "managed"
-            region: us-east1
+            region: $GOOGLE_COMPUTE_ZONE
             service-name: $SERVICE_NAME
             unauthenticated: true
 # Invoke jobs via workflows
