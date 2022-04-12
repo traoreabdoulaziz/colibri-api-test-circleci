@@ -20,7 +20,7 @@ jobs:
             command: |
               echo ${GCP_PROJECT_KEY} | base64 -d -i > $HOME/gcloud-service-key.json
               echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
-              docker build -t $GOOGLE_COMPUTE_ZONE-$REGISTRY_URL/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME -t $GOOGLE_COMPUTE_ZONE-$REGISTRY_URL/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME .
+              docker build -t $GOOGLE_COMPUTE_ZONE-$REGISTRY_URL/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME .
         - gcp-gcr/gcr-auth:
             gcloud-service-key: GOOGLE_CLOUD_KEYS
             google-project-id: GOOGLE_PROJECT_ID
