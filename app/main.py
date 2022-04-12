@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from mangum import Mangum
-
+from .config.config import settings
 
 import jwt
 from fastapi import APIRouter
@@ -16,11 +16,11 @@ from tortoise.contrib.fastapi import register_tortoise
 from .api.api import router as api_router
 
 
-DATABASE_URL='postgres://postgres:12345678@34.71.36.171:5432/colibri-database'
+#DATABASE_URL='postgres://postgres:12345678@34.71.36.171:5432/colibri-database'
 
 
 
-app = FastAPI(title='Colibri api')
+app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
 @app.get("/",  tags=["Endpoint Test"])
 def main_endpoint_test():
     return {"message": "Welcome to API COLIBRI"}
@@ -45,9 +45,11 @@ async def generate_token(form_data: OAuth2PasswordRequestForm = Depends()):
 app.include_router(api_router, prefix="/api")
 
 
+
+
 register_tortoise(
         app, 
-        db_url=DATABASE_URL,
+        db_url=settings.DATABASE_URL,
         modules={'models': ['app.api.endpoints.model']},
         generate_schemas=True,
         add_exception_handlers=True

@@ -36,3 +36,4 @@ uvloop
 httptools
 qrcode
 asyncpg
+python-dotenv
