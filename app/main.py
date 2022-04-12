@@ -9,16 +9,8 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from .api.endpoints.model import User, User_Pydantic, UserIn_Pydantic
 from .api.endpoints.auth import authenticate_user, JWT_SECRET
 from passlib.hash import bcrypt     
-
-
 from tortoise.contrib.fastapi import register_tortoise
-
 from .api.api import router as api_router
-
-
-#DATABASE_URL='postgres://postgres:12345678@34.71.36.171:5432/colibri-database'
-
-
 
 app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
 @app.get("/",  tags=["Endpoint Test"])
