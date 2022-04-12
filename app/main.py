@@ -15,10 +15,15 @@ from tortoise.contrib.fastapi import register_tortoise
 
 from .api.api import router as api_router
 
-app = FastAPI(title='Colibri api Data354 Aziz')
+
+DATABASE_URL='postgres://postgres:12345678@34.71.36.171:5432/colibri-database'
+
+
+
+app = FastAPI(title='Colibri api')
 @app.get("/",  tags=["Endpoint Test"])
 def main_endpoint_test():
-    return {"message": "Welcome to API COLIBRI AZIZ"}
+    return {"message": "Welcome to API COLIBRI"}
 
 
 @app.post('/token', tags=["Authentication"])
@@ -42,7 +47,7 @@ app.include_router(api_router, prefix="/api")
 
 register_tortoise(
         app, 
-        db_url='postgres://postgres:12345678@34.71.36.171:5432/colibri-database',
+        db_url=DATABASE_URL,
         modules={'models': ['app.api.endpoints.model']},
         generate_schemas=True,
         add_exception_handlers=True
