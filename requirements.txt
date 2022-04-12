@@ -35,3 +35,4 @@ gunicorn
 uvloop
 httptools
 qrcode
+asyncpg
