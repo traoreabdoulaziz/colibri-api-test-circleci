@@ -42,7 +42,7 @@ app.include_router(api_router, prefix="/api")
 
 register_tortoise(
         app, 
-        db_url='sqlite://db.sqlite3',
+        db_url='postgres://postgres:12345678@34.71.36.171:5432/colibri-database',
         modules={'models': ['app.api.endpoints.model']},
         generate_schemas=True,
         add_exception_handlers=True
