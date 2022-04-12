@@ -15,7 +15,7 @@ from tortoise.contrib.fastapi import register_tortoise
 
 from .api.api import router as api_router
 
-app = FastAPI(title='Colibri api')
+app = FastAPI(title='Colibri api Data354')
 @app.get("/",  tags=["Endpoint Test"])
 def main_endpoint_test():
     return {"message": "Welcome to API COLIBRI AZIZ"}
