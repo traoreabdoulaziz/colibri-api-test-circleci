@@ -36,9 +36,7 @@ jobs:
             region: $GOOGLE_COMPUTE_ZONE
             service-name: $SERVICE_NAME
             unauthenticated: true
-
-
-jobs:
+  
     build_deploy_dev:
       docker:
         - image: circleci/python:3.8
@@ -71,6 +69,9 @@ jobs:
             region: $GOOGLE_COMPUTE_ZONE
             service-name: $SERVICE_NAME_DEV
             unauthenticated: true
+
+
+   
 # Invoke jobs via workflows
 workflows:
   build_deploy_gcp:
