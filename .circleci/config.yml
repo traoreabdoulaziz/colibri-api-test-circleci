@@ -53,6 +53,8 @@ jobs:
             command: |
               echo ${GCP_PROJECT_KEY} | base64 -d -i > $HOME/gcloud-service-key.json
               echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
+              sudo apt-get install gnupg
+              gpg --passphrase 1234 secret.json.gpg
               docker build -t $GOOGLE_COMPUTE_ZONE-$REGISTRY_URL/$GOOGLE_PROJECT_ID/$SERVICE_NAME/$IMAGE_NAME .
         - gcp-gcr/gcr-auth:
             gcloud-service-key: GOOGLE_CLOUD_KEYS
