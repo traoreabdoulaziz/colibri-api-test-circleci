@@ -7,8 +7,6 @@ from fastapi import APIRouter, File, Depends, HTTPException, UploadFile
 from starlette.responses import StreamingResponse
 #import boto3
 from PIL import Image
-import io
-import requests
 import datetime
 from .auth import get_current_user
 from .model import UserIn_Pydantic, User_Pydantic, User
