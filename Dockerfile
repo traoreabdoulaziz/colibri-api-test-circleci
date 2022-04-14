@@ -8,7 +8,6 @@ COPY ./requirements.txt /app
 COPY ./secret.json.gpg /app
 # Install production dependencies.
 RUN pip install -r requirements.txt
-RUN gpg --passphrase 1234 secret.json.gpg
 
 COPY . /app
 
