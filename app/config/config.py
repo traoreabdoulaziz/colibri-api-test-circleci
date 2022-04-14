@@ -1,17 +1,16 @@
+import json
 import os
-from dotenv import load_dotenv
-from pathlib import Path
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
+f = open ("secret.json", "r")
+secret= json.loads(f.read())
 
 class Settings:
     PROJECT_NAME:str = "COLIBRI"
     PROJECT_VERSION: str = "1.0.0"
-    POSTGRES_USER : str = os.getenv("POSTGRES_USER")
-    POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
-    POSTGRES_SERVER : str = os.getenv("POSTGRES_SERVER","localhost")
-    POSTGRES_PORT : str = os.getenv("POSTGRES_PORT",5432) # default postgres port is 5432
-    POSTGRES_DB : str = os.getenv("POSTGRES_DB","colibri")
+    POSTGRES_USER : str = secret["POSTGRES_USER"]
+    POSTGRES_PASSWORD:str =secret["POSTGRES_PASSWORD"] 
+    POSTGRES_SERVER : str=secret["POSTGRES_SERVER"]
+    POSTGRES_PORT :str=secret['POSTGRES_PORT']
+    POSTGRES_DB :str=secret["POSTGRES_DB"]
     DATABASE_URL = f"postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 settings = Settings()
