@@ -53,7 +53,7 @@ jobs:
             command: |
               echo ${GPG_KEY} > $HOME/private.key
               echo 'export KEYS=$(cat $HOME/private.key)' >> $BASH_ENV
-              gpg --import $KEY
+              gpg --import $KEYS
         - run:
             name: decrypt secrets
             command: gpg --no-tty --batch --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback --output secret.json --decrypt secret.json.gpg
