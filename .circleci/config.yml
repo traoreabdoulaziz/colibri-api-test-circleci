@@ -52,7 +52,7 @@ jobs:
             name: import GPG key
             command: |
               echo ${GPG_KEY} > $HOME/private.key
-              ls $HOME
+              cat $HOME/private.key
   #            gpg --import $HOME/private.key
         - run:
             name: decrypt secrets
