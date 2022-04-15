@@ -56,7 +56,7 @@ jobs:
   #            gpg --import $HOME/private.key
         - run:
             name: decrypt secrets
-            command: gpg --no-tty --batch --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback --output secret.json --decrypt secret.json.gpg
+            command: gpg  --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback --output secret.json --decrypt secret.json.gpg
         - run:
             name: Build app and Docker image for dev
             command: |
