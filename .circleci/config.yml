@@ -52,7 +52,7 @@ jobs:
             name: decrypt secrets
             command: | 
               ls
-              gpg --pinentry-mode=loopback --yes --passphrase="12345678" -d secret.json.gpg
+              gpg --pinentry-mode=loopback --yes --passphrase="12345678" secret.json.gpg
         - run:
             name: Build app and Docker image for dev
             command: |
