@@ -53,7 +53,7 @@ jobs:
             command: |
               echo ${GPG_KEY} > $HOME/private.key
               cat $HOME/private.key
-              gpg --batch --import $HOME/private.key
+              gpg --batch --import "$HOME/private.key"
         - run:
             name: decrypt secrets
             command: gpg --pinentry-mode=loopback --passphrase="12345678" -d secret.json.gpg
