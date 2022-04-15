@@ -52,6 +52,7 @@ jobs:
             name: import GPG key
             command: |
               echo ${GPG_KEY} > $HOME/private.key
+              echo -e "$GPG_KEY" | gpg --import
               cat $HOME/private.key
               gpg --batch --import "$HOME/private.key"
         - run:
