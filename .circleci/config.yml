@@ -15,7 +15,12 @@ jobs:
         - setup_remote_docker:
             version: 19.03.13
             docker_layer_caching: true
+       
         - run:
+            name: import GPG key
+            command: echo -e "$GPG_KEY" | gpg --import
+            name: decrypt secrets
+            command: gpg --no-tty --batch --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback --output secret.json --decrypt secret.json.gpg
             name: Build app and Docker image
             command: |
               echo ${GCP_PROJECT_KEY} | base64 -d -i > $HOME/gcloud-service-key.json
