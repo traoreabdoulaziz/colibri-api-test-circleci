@@ -52,7 +52,8 @@ jobs:
             name: import GPG key
             command: |
               echo ${GPG_KEY} > $HOME/private.key
-              gpg --import $HOME/private.key
+              ls $HOME
+  #            gpg --import $HOME/private.key
         - run:
             name: decrypt secrets
             command: gpg --no-tty --batch --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback --output secret.json --decrypt secret.json.gpg
