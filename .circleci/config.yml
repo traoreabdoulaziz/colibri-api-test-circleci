@@ -49,15 +49,10 @@ jobs:
             version: 19.03.13
             docker_layer_caching: true
         - run:
-            name: import GPG key
-            command: |
-              echo ${GPG_KEY} > $HOME/private.key
-              echo -e "$GPG_KEY" | gpg --import
-              cat $HOME/private.key
-              gpg --batch --import "$HOME/private.key"
-        - run:
             name: decrypt secrets
-            command: gpg --pinentry-mode=loopback --passphrase="12345678" -d secret.json.gpg
+            command: | 
+              ls
+              gpg --no-symkey-cache --passphrase="12345678" -d secret.json.gpg
         - run:
             name: Build app and Docker image for dev
             command: |
